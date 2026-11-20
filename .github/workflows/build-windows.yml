@@ -26,7 +26,7 @@ jobs:
       - name: Build ${{ matrix.platform }}
         run: >-
           msbuild src/518byReplica/518byReplica.csproj
-          /m /t:Rebuild /p:Configuration=Release
+          /restore /m /t:Rebuild /p:Configuration=Release
           /p:Platform=${{ matrix.platform }}
           /verbosity:minimal
 
