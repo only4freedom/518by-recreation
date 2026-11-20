@@ -313,7 +313,7 @@ namespace _518byReplica
             voiceBox.Items.Clear();
             try
             {
-                InstalledVoiceCollection installed = synthesizer.GetInstalledVoices();
+                var installed = synthesizer.GetInstalledVoices();
                 foreach (InstalledVoice voice in installed)
                 {
                     if (voice.Enabled) voiceBox.Items.Add(voice.VoiceInfo.Name);
