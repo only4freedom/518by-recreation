@@ -1,0 +1,41 @@
+name: Build Windows x86 and x64
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ x86, x64 ]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build ${{ matrix.platform }}
+        run: >-
+          msbuild src/518byReplica/518byReplica.csproj
+          /m /t:Rebuild /p:Configuration=Release
+          /p:Platform=${{ matrix.platform }}
+          /verbosity:minimal
+
+      - name: Upload ${{ matrix.platform }} executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: 518byReplica-Win7-${{ matrix.platform }}
+          path: src/518byReplica/bin/Release/${{ matrix.platform }}/518byReplica.exe
+          if-no-files-found: error
+          retention-days: 30
+
+
