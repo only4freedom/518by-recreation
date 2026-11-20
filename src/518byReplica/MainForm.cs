@@ -41,7 +41,7 @@ namespace _518byReplica
             StartPosition = FormStartPosition.CenterScreen;
             Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 
-            settingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "518byReplica", "settings.xml");
+            settingsPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "518byReplica"), "settings.xml");
             settings = LoadSettings(settingsPath);
             playQueue = new List<BroadcastItem>();
             currentMusicAlias = "replicaMusic";
