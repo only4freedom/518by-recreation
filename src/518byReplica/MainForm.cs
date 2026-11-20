@@ -446,7 +446,7 @@ namespace _518byReplica
         {
             if (queueView.SelectedItems.Count == 0) return;
             BroadcastItem item = queueView.SelectedItems[0].Tag as BroadcastItem;
-            if (item == null || String.IsNullOrWhiteSpace(item.Text))
+            if (item == null || IsBlank(item.Text))
             {
                 SetStatus("请先输入播报文本。");
                 return;
@@ -461,7 +461,7 @@ namespace _518byReplica
             playQueue.Clear();
             foreach (BroadcastItem item in settings.Items)
             {
-                if (item.Enabled && !String.IsNullOrWhiteSpace(item.Text)) playQueue.Add(item);
+                if (item.Enabled && !IsBlank(item.Text)) playQueue.Add(item);
             }
             if (playQueue.Count == 0)
             {
@@ -659,6 +659,11 @@ namespace _518byReplica
             if (value < minimum) return minimum;
             if (value > maximum) return maximum;
             return value;
+        }
+
+        private static bool IsBlank(string value)
+        {
+            return String.IsNullOrEmpty(value) || value.Trim().Length == 0;
         }
 
         private static int Mci(string command)

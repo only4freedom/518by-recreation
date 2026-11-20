@@ -20,7 +20,7 @@
 
 GitHub Actions 工作流在推送到 `main`、创建版本标签或手动运行时构建两个架构，并将 EXE 上传为可下载的 workflow artifacts。
 
-程序以 .NET Framework 4.0 / WinForms 编写，目标是覆盖 Windows 7 及更高版本。系统需要对应 .NET Framework 4.x 运行时。实际兼容性仍需在 Win7 x86 与 x64 真机/虚拟机上验证。
+程序以 .NET Framework 3.5 / WinForms 编写，目标是 Windows 7 及更高版本。Windows 7 通常已包含 .NET Framework 3.5，因此构建产物是单个 EXE，无需另外下载程序依赖 DLL；若系统精简或关闭了 .NET 3.5 Windows 功能，需要先启用该功能。实际兼容性仍需在 Win7 x86 与 x64 真机/虚拟机上验证。
 
 ## 数据
 
